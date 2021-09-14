@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.example.sqlite_recyclerview_pagination"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -32,6 +32,16 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+
+    // code generator for view
+    implementation "com.jakewharton:butterknife:10.1.0"
+    annotationProcessor "com.jakewharton:butterknife-compiler:10.1.0"
+
+    //Api retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

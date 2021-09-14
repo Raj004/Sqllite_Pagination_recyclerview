@@ -1,140 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/snack"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <EditText android:id="@+id/etbook_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="30dp">
+        android:inputType="textPersonName"
+        android:hint="Book name"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <EditText android:id="@+id/etbook_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Book author"
+        android:textColor="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/etbook_name"
+         />
+    <Button android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:background="#AA0909"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/etbook_author"
+        />
+    <Button android:id="@+id/show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Show"
+        android:textAllCaps="false"
+        android:background="#D81067"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/submit"
+        />
 
-        <EditText
-            android:id="@+id/etname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColorHint="#aeb0a5"
-            android:hint="Name"
-            android:layout_gravity="center"
-            android:inputType="text"
-            android:background="#00000000"
-            android:textSize="12dp"
-            android:letterSpacing="0.1"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="#c1c1c1"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginTop="5dp"
-
-            ></LinearLayout>
-
-        <EditText
-            android:id="@+id/etemail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColorHint="#aeb0a5"
-            android:hint="city"
-            android:layout_gravity="center"
-            android:inputType="text"
-            android:background="#00000000"
-            android:textSize="12dp"
-            android:letterSpacing="0.1"
-            android:layout_marginTop="30dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="#c1c1c1"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginTop="5dp"
-            ></LinearLayout>
-
-        <EditText
-            android:id="@+id/etcompany"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColorHint="#aeb0a5"
-            android:hint="Company"
-            android:layout_gravity="center"
-            android:inputType="text"
-            android:background="#00000000"
-            android:textSize="12dp"
-            android:letterSpacing="0.1"
-            android:layout_marginTop="30dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="#c1c1c1"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginTop="5dp"
-            ></LinearLayout>
-        <EditText
-            android:id="@+id/etphone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColorHint="#aeb0a5"
-            android:hint="country"
-            android:layout_gravity="center"
-            android:inputType="text"
-            android:background="#00000000"
-            android:textSize="12dp"
-            android:letterSpacing="0.1"
-            android:layout_marginTop="30dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="#c1c1c1"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginTop="10dp"
-            ></LinearLayout>
-
-
-        <!--
-
-
-          <ImageView
-              android:layout_width="130dp"
-              android:layout_height="70dp"
-              android:src="@drawable/signin"
-              android:scaleType="fitXY"
-              android:layout_gravity="center"
-              android:layout_marginTop="22dp"
-              />
-          -->
-
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:scaleType="fitXY"
-            android:text="Submit"
-            android:layout_gravity="center"
-            android:layout_marginTop="22dp"
-            android:textSize="12dp"
-            android:background="#c1c1c1"
-            />
-        <Button
-            android:id="@+id/show"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:scaleType="fitXY"
-            android:text="View"
-            android:layout_gravity="center"
-            android:layout_marginTop="22dp"
-            android:textSize="12dp"
-            android:background="#c1c1c1"
-            />
-
-    </LinearLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

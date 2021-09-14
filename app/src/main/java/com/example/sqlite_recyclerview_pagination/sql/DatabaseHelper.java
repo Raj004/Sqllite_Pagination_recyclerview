@@ -1,4 +1,4 @@
-package com.example.sqlite_recyclerview_pagination;
+package com.example.sqlite_recyclerview_pagination.sql;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.sqlite_recyclerview_pagination.model.DataModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +17,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static String DATABASE = "database.db";
     public static String TABLE ="mytable";
-    public static String NAME ="name";
-    public static String COMPANY ="company";
-    public static String CITY ="city";
-    public static String COUNTRY ="country";
+    public static String BOOK_NAME ="name";
+    public static String AUTHOR ="author";
+
     String br;
 
     public DatabaseHelper(Context context) {
@@ -29,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //  br= "CREATE TABLE mytable(name TEXT,company TEXT,city TEXT,country TEXT);";
-        br = "CREATE TABLE "+TABLE+"("+NAME+ " Text, "+COMPANY+ " Text, "+CITY+ " Text, "+COUNTRY+ " Text);";
+        br = "CREATE TABLE "+TABLE+"("+BOOK_NAME+ " Text, "+AUTHOR+ " Text);";
         db.execSQL(br);
 
     }
@@ -40,19 +41,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void insertdata(String name,String company ,String city,String country){
+    public void insertdata(String name,String author){
         System.out.print("Hello "+br);
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
 
 
-        contentValues.put(NAME, name);
-        contentValues.put(COMPANY, company);
-        contentValues.put(CITY,city);
-        contentValues.put(COUNTRY,country);
+        contentValues.put(BOOK_NAME, name);
+        contentValues.put(AUTHOR, author);
+
         db.insert(TABLE,null,contentValues);
 
 
+    }
+    public void deleteCallDetail(String number, String duration) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE, "name='" + BOOK_NAME + "'author'" + AUTHOR + "'", null);
+        db.close();
     }
 
     public List<DataModel> getdata(){
@@ -65,11 +70,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         while (cursor.moveToNext()) {
             dataModel= new DataModel();
             String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-            String country = cursor.getString(cursor.getColumnIndexOrThrow("country"));
-            String city = cursor.getString(cursor.getColumnIndexOrThrow("city"));
-            dataModel.setName(name);
-            dataModel.setCity(city);
-            dataModel.setCounty(country);
+            String author = cursor.getString(cursor.getColumnIndexOrThrow("author"));
+            dataModel.setBook_name(name);
+            dataModel.setAuthor(author);
             stringBuffer.append(dataModel);
             // stringBuffer.append(dataModel);
             data.add(dataModel);
@@ -77,11 +80,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         for (DataModel mo:data ) {
 
-            Log.i("Hellomo",""+mo.getCity());
+            Log.i("Hellomo",""+mo.getBook_name());
         }
-
-        //
-
         return data;
     }
 

@@ -1,13 +1,14 @@
-package com.example.sqlite_recyclerview_pagination;
+package com.example.sqlite_recyclerview_pagination.adapter;
 
-/**
- * Created by rajshekhar on 26/4/18.
- */
+
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.sqlite_recyclerview_pagination.model.DataModel;
+import com.example.sqlite_recyclerview_pagination.R;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,14 +24,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Myholder
     }
 
     class Myholder extends RecyclerView.ViewHolder{
-        TextView name,city,country;
+        TextView book_name,author;
 
         public Myholder(View itemView) {
             super(itemView);
 
-            name = (TextView) itemView.findViewById(R.id.name1);
-            city = (TextView) itemView.findViewById(R.id.city1);
-            country = (TextView) itemView.findViewById(R.id.country1);
+            book_name = (TextView) itemView.findViewById(R.id.bookname);
+            author = (TextView) itemView.findViewById(R.id.bookauthor);
         }
     }
 
@@ -45,9 +45,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Myholder
     @Override
     public void onBindViewHolder(Myholder holder, int position) {
         DataModel dataModel=dataModelArrayList.get(position);
-        holder.name.setText(dataModel.getName());
-        holder.city.setText(dataModel.getCity());
-        holder.country.setText(dataModel.getCounty());
+        holder.book_name.setText(dataModel.getBook_name());
+        holder.author.setText(dataModel.getAuthor());
 
     }
 
