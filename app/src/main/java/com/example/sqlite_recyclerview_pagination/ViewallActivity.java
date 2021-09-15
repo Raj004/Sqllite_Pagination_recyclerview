@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -24,11 +25,11 @@ import static com.example.sqlite_recyclerview_pagination.PaginationListener.PAGE
 
 public class ViewallActivity extends AppCompatActivity {
 
-    Button show;
     DatabaseHelper database;
     RecyclerView recyclerView;
     PostRecyclerAdapter recycler;
     List<DataModel> datamodel;
+    public Context context;
 
     private PostRecyclerAdapter adapter;
     private int currentPage = PAGE_START;
@@ -36,21 +37,22 @@ public class ViewallActivity extends AppCompatActivity {
     private int totalPage = 10;
     private boolean isLoading = false;
     int itemCount = 0;
+    public PostRecyclerAdapter.RemoveClickListner itemClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewall);
-        datamodel =new ArrayList<DataModel>();
+        datamodel = new ArrayList<DataModel>();
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
 
         database = new DatabaseHelper(ViewallActivity.this);
-        datamodel=  database.getdata();
-        recycler =new PostRecyclerAdapter(datamodel);
+        datamodel = database.getdata();
+        recycler = new PostRecyclerAdapter(datamodel, itemClickListener);
 
 
-        Log.i("HIteshdata",""+datamodel);
-        RecyclerView.LayoutManager reLayoutManager =new LinearLayoutManager(getApplicationContext());
+        Log.i("HIteshdata", "" + datamodel);
+        RecyclerView.LayoutManager reLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(reLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(recycler);
@@ -62,43 +64,54 @@ public class ViewallActivity extends AppCompatActivity {
                 currentPage++;
                 doApiCall();
             }
+
             @Override
             public boolean isLastPage() {
                 return isLastPage;
             }
+
             @Override
             public boolean isLoading() {
                 return isLoading;
             }
         });
     }
+ /*   private void deletePlace(int position){
+        // mListner.OnRemoveClick(position);
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        DataModel postItem = new DataModel();
 
+        databaseHelper.removePlace(postItem.book_name, postItem.getAuthor());
+        datamodel.remove(position);
+
+    }*/
 
 
     private void doApiCall() {
-
-
-        Toast.makeText(this, "(Progress check",
+        Toast.makeText(this, "Progress check",
                 Toast.LENGTH_LONG).show();
         final ArrayList<DataModel> items = new ArrayList<>();
         new Handler().postDelayed(() -> {
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 10; i++) {
                 itemCount++;
                 DataModel postItem = new DataModel();
                 postItem.setBook_name(postItem.book_name);
                 postItem.setAuthor(postItem.author);
-
-
-        /*        postItem.setBook_name(postItem.book_name) + itemCount);
-                postItem.setAuthor(getString(R.string.text_description));*/
                 items.add(postItem);
             }
-            /**
-             * manage progress view
-             */
+          /*  if (currentPage != PAGE_START) adapter.removeLoading();
+            adapter.addItems(items);
+            // check weather is last page or not
+            if (currentPage < totalPage) {
+                adapter.addLoading();
+            } else {
+                isLastPage = true;
+            }
+            isLoading = false;*/
 
         }, 1500);
+
     }
 
 
